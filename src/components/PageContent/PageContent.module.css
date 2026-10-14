@@ -1,0 +1,44 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-right: 1px solid var(--color-divider);
+  background: var(--color-surface);
+}
+
+.header {
+  display: grid;
+  grid-template: "info . actions" auto "search search search" auto / auto 1fr auto;
+  align-items: center;
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  grid-area: info;
+  align-items: center;
+  box-sizing: content-box;
+  height: 36px;
+  padding: 16px 0 12px 16px;
+}
+
+.actions {
+  grid-area: actions;
+  box-sizing: content-box;
+  padding: 16px 16px 12px 0;
+}
+
+.search {
+  grid-area: search;
+  box-sizing: content-box;
+  padding: 0 16px 8px;
+}
+
+.body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}

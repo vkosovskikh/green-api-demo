@@ -1,0 +1,53 @@
+:root {
+  --color-primary: #007aff;
+  --color-primary-hover: #479fff;
+  --color-primary-pressed: #006ee5;
+  --color-secondary: #969699;
+  --color-text: #060708;
+  --color-text-muted: #06070885;
+  --color-menu: #06070885;
+  --color-menu-hover: #060708b8;
+  --color-menu-active: #060708;
+  --color-surface: #fff;
+  --color-input: #0909090d;
+  --color-divider: #0c0d0e0f;
+  --color-on-primary: #fff;
+  --font: -apple-system, BlinkMacSystemFont, "Roboto", system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  font: 16px/24px var(--font);
+  color: var(--color-text);
+  background: var(--color-surface);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}

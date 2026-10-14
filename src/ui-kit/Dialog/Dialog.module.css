@@ -1,0 +1,64 @@
+.overlay {
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: #00000080;
+  cursor: pointer;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 420px;
+  max-width: 100%;
+  padding: 24px 0 0;
+  border-radius: 32px;
+  background: var(--color-surface);
+  overflow: hidden;
+  cursor: default;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 24px;
+}
+
+.description {
+  margin: 0;
+  color: #060708ad;
+  font: 400 16px/20px var(--font);
+  letter-spacing: 0.15px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 24px 4px;
+}
+
+.actions {
+  display: flex;
+  padding: 8px 24px 24px;
+}
+
+@media (max-width: 925.9px) {
+  .overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .panel {
+    width: 100%;
+    max-width: 440px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

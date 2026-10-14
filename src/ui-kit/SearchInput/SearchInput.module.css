@@ -1,0 +1,25 @@
+.input {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 36px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: var(--color-input);
+  font-size: 15px;
+  font-style: normal;
+  line-height: 20px;
+}
+
+.field {
+  width: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.field::placeholder {
+  color: #757575;
+}

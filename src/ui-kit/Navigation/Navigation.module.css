@@ -1,0 +1,151 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  width: 77px;
+  min-width: 77px;
+  height: 100%;
+  padding-bottom: 16px;
+  border-right: 1px solid var(--color-divider);
+  background: var(--color-surface);
+  user-select: none;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 4px;
+}
+
+.primary {
+  padding-top: 24px;
+  padding-bottom: 12px;
+}
+
+.bottom {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 0 4px;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+.separator {
+  flex: none;
+  height: 1px;
+  margin: 0 8px;
+  background: #0c0d0e29;
+}
+
+.item {
+  position: relative;
+}
+
+.narrowOnly {
+  display: none;
+}
+
+.button {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  padding: 8px 2px;
+  border: none;
+  background: transparent;
+  color: var(--color-menu);
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.3px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: var(--color-menu-hover);
+}
+
+.buttonActive,
+.buttonActive:hover {
+  color: var(--color-menu-active);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.icon {
+  display: inline-block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.label {
+  display: -webkit-box;
+  overflow: hidden;
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-word;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 925.9px) {
+  .nav {
+    flex-direction: row;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: calc(76px + env(safe-area-inset-bottom, 0px));
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+    gap: 8px;
+    border-right: none;
+    background: var(--color-surface);
+    box-shadow: 0 -1px 24px #0000001a;
+    touch-action: none;
+  }
+
+  .group,
+  .bottom,
+  .footer {
+    display: contents;
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .wideOnly {
+    display: none;
+  }
+
+  .narrowOnly {
+    display: block;
+  }
+
+  .item {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .button,
+  .button:hover {
+    color: var(--color-secondary);
+  }
+
+  .buttonActive,
+  .buttonActive:hover {
+    color: var(--color-primary);
+  }
+}

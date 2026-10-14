@@ -1,0 +1,17 @@
+.title {
+  overflow: hidden;
+  margin: 0;
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.wrap {
+  white-space: normal;
+  word-break: break-word;
+  text-overflow: unset;
+}

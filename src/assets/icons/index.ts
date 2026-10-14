@@ -1,0 +1,8 @@
+export { default as ArrowLeftIcon } from './arrow-left.svg?react'
+export { default as CallByNumberIcon } from './call-by-number.svg?react'
+export { default as MessageFillIcon } from './message-fill.svg?react'
+export { default as PlusIcon } from './plus.svg?react'
+export { default as SendIcon } from './send.svg?react'
+export { default as SettingsFillIcon } from './settings-fill.svg?react'
+export { default as StatusDeliveredIcon } from './status-delivered.svg?react'
+export { default as StatusReadIcon } from './status-read.svg?react'
