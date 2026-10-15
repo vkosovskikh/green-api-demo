@@ -11,3 +11,7 @@ npm run preview
 ```
 
 После сборки приложение доступно по адресу http://localhost:4173.
+
+## Live example
+
+https://vkosovskikh.github.io/green-api-demo/
