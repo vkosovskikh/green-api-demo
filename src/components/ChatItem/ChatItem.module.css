@@ -80,6 +80,9 @@
 }
 
 .time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   grid-area: time;
   margin-left: 12px;
   color: var(--color-text-muted);
@@ -87,6 +90,17 @@
   font-size: 13px;
   line-height: 16px;
   white-space: nowrap;
+}
+
+.time svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--color-primary);
+}
+
+.time svg.sent {
+  color: var(--color-secondary);
 }
 
 .preview {

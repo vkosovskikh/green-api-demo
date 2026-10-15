@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Outlet, useMatch, useNavigate } from 'react-router-dom'
 import { useChat } from '../../data/chatRepository'
+import { NotificationLoop } from '../../notifications/NotificationLoop'
 import { Navigation, type NavItem } from '../../ui-kit/Navigation/Navigation'
 import { ChatsPage } from '../ChatsPage/ChatsPage'
 import styles from './Home.module.css'
@@ -18,6 +19,7 @@ export function Home() {
 
   return (
     <div className={chatOpen ? `${styles.shell} ${styles.shellChat}` : styles.shell}>
+      <NotificationLoop />
       <div className={styles.nav}>
         <Navigation
           items={folders}

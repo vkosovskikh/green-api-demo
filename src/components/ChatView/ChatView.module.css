@@ -241,6 +241,10 @@
   height: 16px;
 }
 
+.sent {
+  color: var(--color-secondary);
+}
+
 .composer {
   flex: none;
   padding: 0 16px 16px;

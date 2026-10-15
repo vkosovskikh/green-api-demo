@@ -1,5 +1,5 @@
 import { queryOptions } from '@tanstack/react-query'
-import { instanceUrl, postInstance } from './client'
+import { instanceUrl, postInstance, requestSignal } from './client'
 
 const serverError = 'При обращении к серверу произошла ошибка'
 
@@ -22,7 +22,7 @@ export async function checkAccount(
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ phoneNumber }),
-      signal: AbortSignal.timeout(5000),
+      signal: requestSignal(),
     })
   } catch {
     return { message: serverError }

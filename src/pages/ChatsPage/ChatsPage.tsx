@@ -157,8 +157,9 @@ export function ChatsPage() {
             <ChatItem
               key={chat.chatId}
               name={ready ? chat.name : ''}
-              preview=""
+              preview={lastMessage?.text ?? ''}
               time={lastMessage?.time ?? ''}
+              status={lastMessage?.out ? lastMessage.status : undefined}
               avatarUrl={ready && chat.avatar ? chat.avatar : undefined}
               fallback={ready ? chat.name.trim().charAt(0) : ''}
               selected={chat.chatId === selectedId}

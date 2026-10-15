@@ -1,22 +1,22 @@
 import { useEffect, useRef } from 'react'
 import { StatusDeliveredIcon, StatusReadIcon } from '../../assets/icons'
+import type { ChatMessage, MessageStatus } from '../../data/chatRepository'
 import styles from './ChatView.module.css'
 
-export type Message = {
-  id: number
-  text: string
-  time: string
-  out: boolean
-  read?: boolean
-}
-
 type MessageListProps = {
-  messages: Message[]
+  messages: ChatMessage[]
 }
 
 type Place = 'single' | 'first' | 'middle' | 'last'
 
-function placeOf(messages: Message[], index: number): Place {
+function OutgoingStatus({ status }: { status: MessageStatus | undefined }) {
+  if (status === 'read') return <StatusReadIcon />
+  if (status === 'delivered') return <StatusDeliveredIcon />
+  if (status === 'sent') return <StatusDeliveredIcon className={styles.sent} />
+  return null
+}
+
+function placeOf(messages: ChatMessage[], index: number): Place {
   const current = messages[index]
   const prevSame = messages[index - 1]?.out === current.out
   const nextSame = messages[index + 1]?.out === current.out
@@ -46,9 +46,7 @@ export function MessageList({ messages }: MessageListProps) {
                 <span className={styles.text}>{message.text}</span>
                 <span className={styles.meta}>
                   {message.time}
-                  {message.out ? (
-                    message.read ? <StatusReadIcon /> : <StatusDeliveredIcon />
-                  ) : null}
+                  {message.out ? <OutgoingStatus status={message.status} /> : null}
                 </span>
               </div>
             </div>

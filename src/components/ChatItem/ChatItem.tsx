@@ -1,9 +1,12 @@
+import { StatusDeliveredIcon, StatusReadIcon } from '../../assets/icons'
+import type { MessageStatus } from '../../data/chatRepository'
 import styles from './ChatItem.module.css'
 
 type ChatItemProps = {
   name: string
   preview: string
   time?: string
+  status?: MessageStatus
   avatarUrl?: string
   fallback?: string
   selected?: boolean
@@ -14,6 +17,7 @@ export function ChatItem({
   name,
   preview,
   time,
+  status,
   avatarUrl,
   fallback,
   selected = false,
@@ -38,8 +42,18 @@ export function ChatItem({
         )}
       </span>
       <span className={styles.name}>{name}</span>
-      {time ? <span className={styles.time}>{time}</span> : <span className={styles.time} />}
+      <span className={styles.time}>
+        <OutgoingMark status={status} />
+        {time}
+      </span>
       <span className={styles.preview}>{preview}</span>
     </button>
   )
+}
+
+function OutgoingMark({ status }: { status: MessageStatus | undefined }) {
+  if (status === 'read') return <StatusReadIcon />
+  if (status === 'delivered') return <StatusDeliveredIcon />
+  if (status === 'sent') return <StatusDeliveredIcon className={styles.sent} />
+  return null
 }

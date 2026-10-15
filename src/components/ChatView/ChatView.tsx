@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { sendMessage } from '../../api/messages'
+import { useAuth } from '../../auth/AuthContext'
 import { chatRepository, formatLastSeen, useChat } from '../../data/chatRepository'
 import { ChatHeader } from './ChatHeader'
 import styles from './ChatView.module.css'
@@ -9,6 +11,7 @@ import { MessageList } from './MessageList'
 export function ChatView() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const { credentials } = useAuth()
   const chat = useChat(id)
   const [draft, setDraft] = useState('')
   const [draftChatId, setDraftChatId] = useState(chat?.chatId)
@@ -25,10 +28,19 @@ export function ChatView() {
 
   const send = () => {
     const text = draft.trim()
-    if (!text) return
+    if (!text || !credentials) return
     const time = new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })
-    chatRepository.addMessage(chat.chatId, { id: Date.now(), text, time, out: true, read: false })
+    const localId = crypto.randomUUID()
+    chatRepository.addMessage(chat.chatId, { id: localId, text, time, out: true, status: 'notSent' })
     setDraft('')
+    void sendMessage(credentials.idInstance, credentials.apiTokenInstance, chat.chatId, text)
+      .then((idMessage) => {
+        if (!idMessage) return
+        chatRepository.bindServerId(chat.chatId, localId, idMessage)
+      })
+      .catch(() => {
+        chatRepository.releaseOutgoing(chat.chatId, localId)
+      })
   }
 
   return (
