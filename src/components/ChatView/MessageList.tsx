@@ -1,7 +1,14 @@
 import { useEffect, useRef } from 'react'
 import { StatusDeliveredIcon, StatusReadIcon } from '../../assets/icons'
-import type { Message } from '../../data/chats'
 import styles from './ChatView.module.css'
+
+export type Message = {
+  id: number
+  text: string
+  time: string
+  out: boolean
+  read?: boolean
+}
 
 type MessageListProps = {
   messages: Message[]

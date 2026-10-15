@@ -9,7 +9,6 @@ type DialogProps = {
   description?: string
   onClose?: () => void
   dismissible?: boolean
-  centered?: boolean
   children: ReactNode
   actions?: ReactNode
 }
@@ -20,7 +19,6 @@ export function Dialog({
   description,
   onClose,
   dismissible = true,
-  centered = false,
   children,
   actions,
 }: DialogProps) {
@@ -37,7 +35,7 @@ export function Dialog({
 
   if (!open) return null
 
-  const overlayClass = [styles.overlay, centered ? styles.centered : '', dismissible ? '' : styles.locked]
+  const overlayClass = [styles.overlay, dismissible ? '' : styles.locked]
     .filter(Boolean)
     .join(' ')
 

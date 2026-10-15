@@ -58,6 +58,10 @@
   line-height: 24px;
 }
 
+.empty {
+  background: transparent;
+}
+
 .photo {
   display: block;
   object-fit: cover;

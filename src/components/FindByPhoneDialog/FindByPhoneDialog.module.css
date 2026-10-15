@@ -1,3 +1,10 @@
+.errors {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--color-error);
+  font: 400 15px/20px var(--font);
+}
+
 .flag {
   display: block;
   width: 20px;

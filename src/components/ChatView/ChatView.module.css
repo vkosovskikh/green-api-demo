@@ -75,6 +75,19 @@
   line-height: 20px;
 }
 
+.avatarEmpty {
+  background: transparent;
+}
+
+.avatarPhoto {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .titles {
   display: grid;
   min-width: 0;

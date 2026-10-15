@@ -6,8 +6,11 @@ import styles from './FindByPhoneDialog.module.css'
 
 type FindByPhoneDialogProps = {
   open: boolean
+  pending?: boolean
+  error?: string
   onClose: () => void
   onSearch: (phone: string) => void
+  onDismissError?: () => void
 }
 
 function digitsOnly(value: string) {
@@ -22,40 +25,51 @@ function formatPhone(digits: string) {
     .join(' ')
 }
 
-export function FindByPhoneDialog({ open, onClose, onSearch }: FindByPhoneDialogProps) {
+export function FindByPhoneDialog({
+  open,
+  pending = false,
+  error,
+  onClose,
+  onSearch,
+  onDismissError,
+}: FindByPhoneDialogProps) {
   const [digits, setDigits] = useState('')
+  const [wasOpen, setWasOpen] = useState(open)
   const inputRef = useRef<HTMLInputElement>(null)
   const ready = digits.length === 10
+
+  if (open !== wasOpen) {
+    setWasOpen(open)
+    if (!open) setDigits('')
+  }
 
   useEffect(() => {
     if (!open) return
     inputRef.current?.focus()
   }, [open])
 
-  const close = () => {
-    setDigits('')
-    onClose()
-  }
-
   const submit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (!ready) return
-    const phone = `+7${digits}`
-    setDigits('')
-    onSearch(phone)
+    if (!ready || pending) return
+    onSearch(`+7${digits}`)
   }
 
   return (
     <Dialog
       open={open}
       title="Найти по номеру"
-      onClose={close}
+      onClose={onClose}
       actions={
-        <button className={styles.submit} type="submit" form="find-by-phone" disabled={!ready}>
+        <button className={styles.submit} type="submit" form="find-by-phone" disabled={!ready || pending}>
           Найти в MAX
         </button>
       }
     >
+      {error ? (
+        <ul className={styles.errors}>
+          <li>{error}</li>
+        </ul>
+      ) : null}
       <form id="find-by-phone" onSubmit={submit}>
         <TextField
           ref={inputRef}
@@ -64,7 +78,10 @@ export function FindByPhoneDialog({ open, onClose, onSearch }: FindByPhoneDialog
           autoComplete="tel"
           placeholder="123 456 78 90"
           value={formatPhone(digits)}
-          onChange={(value) => setDigits(digitsOnly(value))}
+          onChange={(value) => {
+            setDigits(digitsOnly(value))
+            if (error) onDismissError?.()
+          }}
           prefix={
             <>
               <img className={styles.flag} src={flagRu} alt="" draggable={false} />

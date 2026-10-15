@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Outlet, useMatch, useNavigate } from 'react-router-dom'
-import { findChat } from '../../data/chats'
+import { useChat } from '../../data/chatRepository'
 import { Navigation, type NavItem } from '../../ui-kit/Navigation/Navigation'
 import { ChatsPage } from '../ChatsPage/ChatsPage'
 import styles from './Home.module.css'
@@ -13,7 +13,7 @@ const footer: NavItem[] = [{ id: 'settings', label: 'Настройки', icon: 
 export function Home() {
   const navigate = useNavigate()
   const match = useMatch('/:id')
-  const chatOpen = Boolean(findChat(match?.params.id))
+  const chatOpen = Boolean(useChat(match?.params.id))
   const [section, setSection] = useState<'all' | 'settings'>('all')
 
   return (

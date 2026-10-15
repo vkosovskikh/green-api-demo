@@ -16,8 +16,9 @@ export function Login() {
   const ready = idInstance.trim().length > 0 && apiTokenInstance.trim().length > 0
   const stateInstance = useMutation({
     mutationFn: (next: Credentials) =>
-      queryClient.fetchQuery(stateInstanceOptions(next.idInstance, next.apiTokenInstance)),
+      queryClient.query(stateInstanceOptions(next.idInstance, next.apiTokenInstance)),
     onSuccess: (data, next) => {
+      console.log(data)
       if (data.stateInstance !== 'authorized') return
       login(next)
       navigate('/', { replace: true })
@@ -52,7 +53,6 @@ export function Login() {
       <div className={styles.pattern} />
       <Dialog
         open
-        centered
         dismissible={false}
         title="Вход"
         actions={

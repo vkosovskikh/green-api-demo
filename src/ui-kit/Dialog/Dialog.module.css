@@ -3,8 +3,9 @@
   z-index: 30;
   inset: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  overflow: auto;
   padding: 16px;
   background: #00000080;
   cursor: pointer;
@@ -16,6 +17,8 @@
   gap: 20px;
   width: 420px;
   max-width: 100%;
+  margin-block: auto;
+  flex: none;
   padding: 24px 0 0;
   border-radius: 32px;
   background: var(--color-surface);
@@ -47,30 +50,6 @@
 .actions {
   display: flex;
   padding: 8px 24px 24px;
-}
-
-@media (max-width: 925.9px) {
-  .overlay {
-    align-items: flex-end;
-    padding: 0;
-  }
-
-  .panel {
-    width: 100%;
-    max-width: 440px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  .centered {
-    align-items: center;
-    padding: 16px;
-  }
-
-  .centered .panel {
-    width: 420px;
-    border-radius: 32px;
-  }
 }
 
 .locked {

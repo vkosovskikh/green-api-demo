@@ -19,7 +19,7 @@ export function ChatItem({
   selected = false,
   onClick,
 }: ChatItemProps) {
-  const letter = fallback ?? name.trim().charAt(0)
+  const letter = (fallback ?? name).trim().charAt(0)
 
   return (
     <button
@@ -31,8 +31,10 @@ export function ChatItem({
       <span className={styles.avatar}>
         {avatarUrl ? (
           <img className={styles.photo} src={avatarUrl} alt="" />
-        ) : (
+        ) : letter ? (
           <span className={styles.circle}>{letter}</span>
+        ) : (
+          <span className={`${styles.circle} ${styles.empty}`} />
         )}
       </span>
       <span className={styles.name}>{name}</span>

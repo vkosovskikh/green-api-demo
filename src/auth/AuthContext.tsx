@@ -1,4 +1,5 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from 'react'
+import { chatRepository } from '../data/chatRepository'
 
 export type Credentials = {
   idInstance: string
@@ -19,7 +20,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     () => ({
       credentials,
       login: setCredentials,
-      logout: () => setCredentials(null),
+      logout: () => {
+        chatRepository.clear()
+        setCredentials(null)
+      },
     }),
     [credentials],
   )
