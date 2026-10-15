@@ -6,6 +6,8 @@ import { AuthProvider } from './auth/AuthContext'
 import App from './App.tsx'
 import './index.css'
 
+const basename = import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.BASE_URL.replace(/\/$/, '')
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -17,7 +19,7 @@ const queryClient = new QueryClient({
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <AuthProvider>
           <App />
         </AuthProvider>
