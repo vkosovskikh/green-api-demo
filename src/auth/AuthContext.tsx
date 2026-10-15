@@ -1,5 +1,6 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from 'react'
 import { chatRepository } from '../data/chatRepository'
+import { startNotifications, stopNotifications } from '../notifications/loop'
 
 export type Credentials = {
   idInstance: string
@@ -19,8 +20,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const value = useMemo<AuthContextValue>(
     () => ({
       credentials,
-      login: setCredentials,
+      login: (next) => {
+        startNotifications(next)
+        setCredentials(next)
+      },
       logout: () => {
+        stopNotifications()
         chatRepository.clear()
         setCredentials(null)
       },
