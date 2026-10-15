@@ -7,14 +7,25 @@ type DialogProps = {
   open: boolean
   title: string
   description?: string
-  onClose: () => void
+  onClose?: () => void
+  dismissible?: boolean
+  centered?: boolean
   children: ReactNode
   actions?: ReactNode
 }
 
-export function Dialog({ open, title, description, onClose, children, actions }: DialogProps) {
+export function Dialog({
+  open,
+  title,
+  description,
+  onClose,
+  dismissible = true,
+  centered = false,
+  children,
+  actions,
+}: DialogProps) {
   useEffect(() => {
-    if (!open) return
+    if (!open || !dismissible || !onClose) return
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose()
@@ -22,14 +33,19 @@ export function Dialog({ open, title, description, onClose, children, actions }:
 
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
-  }, [open, onClose])
+  }, [open, dismissible, onClose])
 
   if (!open) return null
 
+  const overlayClass = [styles.overlay, centered ? styles.centered : '', dismissible ? '' : styles.locked]
+    .filter(Boolean)
+    .join(' ')
+
   return createPortal(
     <div
-      className={styles.overlay}
+      className={overlayClass}
       onMouseDown={(event) => {
+        if (!dismissible || !onClose) return
         if (event.target === event.currentTarget) onClose()
       }}
     >

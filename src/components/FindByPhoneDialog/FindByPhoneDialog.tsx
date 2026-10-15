@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type SubmitEvent } from 'react'
 import flagRu from '../../assets/flag-ru.webp'
 import { Dialog } from '../../ui-kit/Dialog/Dialog'
+import { TextField } from '../../ui-kit/TextField/TextField'
 import styles from './FindByPhoneDialog.module.css'
 
 type FindByPhoneDialogProps = {
@@ -56,22 +57,21 @@ export function FindByPhoneDialog({ open, onClose, onSearch }: FindByPhoneDialog
       }
     >
       <form id="find-by-phone" onSubmit={submit}>
-        <div className={styles.field}>
-          <span className={styles.prefix}>
-            <img className={styles.flag} src={flagRu} alt="" draggable={false} />
-            +7
-          </span>
-          <input
-            ref={inputRef}
-            className={styles.input}
-            type="text"
-            inputMode="numeric"
-            autoComplete="tel"
-            placeholder="123 456 78 90"
-            value={formatPhone(digits)}
-            onChange={(event) => setDigits(digitsOnly(event.target.value))}
-          />
-        </div>
+        <TextField
+          ref={inputRef}
+          name="phone"
+          inputMode="numeric"
+          autoComplete="tel"
+          placeholder="123 456 78 90"
+          value={formatPhone(digits)}
+          onChange={(value) => setDigits(digitsOnly(value))}
+          prefix={
+            <>
+              <img className={styles.flag} src={flagRu} alt="" draggable={false} />
+              +7
+            </>
+          }
+        />
       </form>
     </Dialog>
   )

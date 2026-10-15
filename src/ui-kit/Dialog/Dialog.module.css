@@ -61,4 +61,18 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
+
+  .centered {
+    align-items: center;
+    padding: 16px;
+  }
+
+  .centered .panel {
+    width: 420px;
+    border-radius: 32px;
+  }
+}
+
+.locked {
+  cursor: default;
 }
