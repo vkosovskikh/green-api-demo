@@ -12,6 +12,7 @@
   --color-input: #0909090d;
   --color-divider: #0c0d0e0f;
   --color-on-primary: #fff;
+  --color-error: #ff3b30;
   --font: -apple-system, BlinkMacSystemFont, "Roboto", system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   font: 16px/24px var(--font);

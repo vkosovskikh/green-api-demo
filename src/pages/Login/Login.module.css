@@ -21,6 +21,13 @@
   mask-size: auto;
 }
 
+.errors {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--color-error);
+  font: 400 15px/20px var(--font);
+}
+
 .form {
   display: flex;
   flex-direction: column;

@@ -2,6 +2,8 @@
 
 ## Локальный запуск
 
+Перед запуском проверьте, что в `.env` указан актуальный API URL (`VITE_API_URL`).
+
 ```bash
 npm i
 npm run build
